@@ -4,11 +4,11 @@ The ACME company is migrating their monolithic system to a microservice architec
 https://en.wikipedia.org/wiki/Minimum_viable_product
 
 Your challenge is:
-Build an application with those features described below, if you think the requirements isn’t enough described please leave a comment (portuguese or english) with the doubt you think it’s necessary to continue the development.
+Build an application with those features described below, if you think the requirements aren’t detailed enough please leave a comment (portuguese or english) and proceed as best as you can.
 
-You can choose whatever feature you think it’s necessary for MVP,  IT’S NOT necessary build all the features, we strongly recommend to focus on quality and not implemented features quantity, you’ll be evaluated by the quality of completed tasks not the amount of completed tasks.
+You can choose as many features you think it’s necessary for the MVP,  IT’S NOT necessary build all the features, we strongly recommend to focus on quality over quantity, you’ll be evaluated by the quality of your solution.
 
-If you think something is really necessary but you don’t have enough time to implement please at least leave a comment describing how you’d implement.
+If you think something is really necessary but you don’t have enough time to implement please at least explain how you would implement it.
 
 ## Tasks
 
@@ -38,10 +38,11 @@ Your service(s) must be resilient, fault tolerant, responsive. You should prepar
 The process should be closest possible to "real-time", balancing your choices in order to achieve the expected
 scalability.
 
-## Optional features (describe or implement):
+## Nice to have features (describe or implement):
 * Asynchronous processing
 * Database
 * Docker - https://www.docker.com/
 * AWS propose - https://github.com/localstack/localstack
 * Security
 * Swagger - https://swagger.io/
+* Clean Code
