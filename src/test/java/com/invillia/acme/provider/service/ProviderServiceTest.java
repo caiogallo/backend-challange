@@ -2,6 +2,7 @@ package com.invillia.acme.provider.service;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.invillia.acme.address.model.service.AddressServiceRequest;
 import com.invillia.acme.provider.model.Provider;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -63,5 +64,26 @@ public class ProviderServiceTest {
 
         Assert.assertNotNull(foundProviders);
         Assert.assertEquals(1, foundProviders.size());
+    }
+
+    @Test
+    public void when_find_by_address_and_return_success(){
+        String streetName = "Av Ipiranga";
+        String zipCode = "18099000";
+
+        List<Provider> providers = providerService.find(
+                ProviderServiceRequest
+                        .builder()
+                        .address(
+                                AddressServiceRequest
+                                        .builder()
+                                        .street(streetName)
+                                        .zipCode(zipCode)
+                                        .build())
+                        .build());
+
+        Assert.assertNotNull(providers);
+        Assert.assertEquals(3, providers.size());
+        
     }
 }
