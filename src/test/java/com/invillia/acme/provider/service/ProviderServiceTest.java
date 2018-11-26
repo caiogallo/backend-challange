@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
+
 @RunWith(MockitoJUnitRunner.class)
 public class ProviderServiceTest {
     @InjectMocks
@@ -39,5 +41,27 @@ public class ProviderServiceTest {
         Assert.assertNotNull(updatedProvider);
         Assert.assertNotNull(updatedProvider.getId());
         Assert.assertNotNull(providerName, updatedProvider.getName());
+    }
+
+    @Test
+    public void when_find_provider_by_id_1_return_notnull(){
+        Provider foundProvider = providerService.get(1l);
+
+        Assert.assertNotNull(foundProvider);
+        Assert.assertNotNull(foundProvider.getId());
+        Assert.assertEquals(1, foundProvider.getId().longValue());
+    }
+
+    @Test
+    public void when_find_by_name_and_return_one_provider(){
+        String providerName = "Provider 1";
+        List<Provider> foundProviders = providerService.find(
+                ProviderServiceRequest
+                        .builder()
+                        .name(providerName)
+                        .build());
+
+        Assert.assertNotNull(foundProviders);
+        Assert.assertEquals(1, foundProviders.size());
     }
 }
