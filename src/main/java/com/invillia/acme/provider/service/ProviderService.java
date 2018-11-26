@@ -24,7 +24,7 @@ public class ProviderService {
         return provider;
     }
 
-    public List<Provider> find(ProviderServiceRequest providerRequest) {
+    public List<Provider> find(ProviderSearchRequest providerRequest) {
         return Arrays.asList(new Provider());
     }
 }

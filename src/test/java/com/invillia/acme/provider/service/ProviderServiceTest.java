@@ -2,7 +2,7 @@ package com.invillia.acme.provider.service;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.invillia.acme.address.model.service.AddressServiceRequest;
+import com.invillia.acme.address.model.service.AddressSearchRequest;
 import com.invillia.acme.provider.model.Provider;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -57,7 +57,7 @@ public class ProviderServiceTest {
     public void when_find_by_name_and_return_one_provider(){
         String providerName = "Provider 1";
         List<Provider> foundProviders = providerService.find(
-                ProviderServiceRequest
+                ProviderSearchRequest
                         .builder()
                         .name(providerName)
                         .build());
@@ -72,10 +72,10 @@ public class ProviderServiceTest {
         String zipCode = "18099000";
 
         List<Provider> providers = providerService.find(
-                ProviderServiceRequest
+                ProviderSearchRequest
                         .builder()
                         .address(
-                                AddressServiceRequest
+                                AddressSearchRequest
                                         .builder()
                                         .street(streetName)
                                         .zipCode(zipCode)
@@ -84,6 +84,6 @@ public class ProviderServiceTest {
 
         Assert.assertNotNull(providers);
         Assert.assertEquals(3, providers.size());
-        
+
     }
 }
