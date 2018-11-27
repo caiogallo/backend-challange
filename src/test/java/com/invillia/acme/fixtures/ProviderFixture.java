@@ -14,7 +14,8 @@ public class ProviderFixture implements TemplateLoader {
         }});
 
         Fixture.of(Provider.class).addTemplate("valid").inherits("valid-without-id", new Rule(){{
-            add("id", random(Long.class, range(1L, 10L)));
+            add("id", random("100", "101", "102"));
+            add("address", one(Address.class, "valid"));
         }});
     }
 }

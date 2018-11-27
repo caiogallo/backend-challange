@@ -2,25 +2,48 @@ package com.invillia.acme.provider.service;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.invillia.acme.address.model.Address;
 import com.invillia.acme.address.model.service.AddressSearchRequest;
 import com.invillia.acme.provider.model.Provider;
+import com.invillia.acme.provider.repository.ProviderRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ProviderServiceTest {
-    @InjectMocks
+    @Autowired
     private ProviderService providerService;
 
+    @Autowired
+    private ProviderRepository repository;
+
     @BeforeClass
-    public static void setUp(){
+    public static void setUpClass(){
         FixtureFactoryLoader.loadTemplates("com.invillia.acme.fixtures");
+    }
+
+    @Before
+    public void setUp(){
+        repository.deleteAll();
+
+        Address address = new Address("Av Ipiranga", 123, 18099000);
+        repository.save(new Provider("My Provider"));
+        repository.save(Fixture.from(Provider.class).gimme("valid"));
+        repository.save(Fixture.from(Provider.class).gimme("valid"));
+        repository.save(Fixture.from(Provider.class).gimme("valid"));
+        repository.save(new Provider("Provider 1", address));
+        repository.save(new Provider("Provider 2", address));
+        repository.save(new Provider("Provider 3", address));
+        repository.save(new Provider("1", "Provider One"));
     }
 
     @Test
@@ -29,7 +52,6 @@ public class ProviderServiceTest {
 
         Assert.assertNotNull(createdProvider);
         Assert.assertNotNull(createdProvider.getId());
-        Assert.assertEquals(1l, createdProvider.getId().longValue());
     }
 
     @Test
@@ -46,17 +68,15 @@ public class ProviderServiceTest {
 
     @Test
     public void when_find_provider_by_id_1_return_notnull(){
-        Provider foundProvider = providerService.get(1l);
-
+        Provider foundProvider = providerService.get("1");
         Assert.assertNotNull(foundProvider);
         Assert.assertNotNull(foundProvider.getId());
-        Assert.assertEquals(1, foundProvider.getId().longValue());
     }
 
     @Test
     public void when_find_by_name_and_return_one_provider(){
-        String providerName = "Provider 1";
-        List<Provider> foundProviders = providerService.find(
+        String providerName = "My Provider";
+            List<Provider> foundProviders = providerService.find(
                 ProviderSearchRequest
                         .builder()
                         .name(providerName)
@@ -69,7 +89,7 @@ public class ProviderServiceTest {
     @Test
     public void when_find_by_address_and_return_success(){
         String streetName = "Av Ipiranga";
-        String zipCode = "18099000";
+        Integer zipCode = 18099000;
 
         List<Provider> providers = providerService.find(
                 ProviderSearchRequest

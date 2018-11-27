@@ -1,10 +1,18 @@
 package com.invillia.acme.address.model.service;
 
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class AddressSearchRequest {
+    public AddressSearchRequest(String street, Integer number, Integer zipCode) {
+        this.street = street;
+        this.number = number;
+        this.zipCode = zipCode;
+    }
+
     private String street;
-    private String number;
-    private String zipCode;
+    private Integer number;
+    private Integer zipCode;
 }

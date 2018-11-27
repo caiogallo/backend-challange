@@ -15,7 +15,7 @@ public class AddressFixture implements TemplateLoader {
         }});
 
         Fixture.of(Address.class).addTemplate("valid").inherits("valid-without-id", new Rule(){{
-            add("id", random(1l, 10l));
+            add("id", random("10", "20", "30"));
         }});
     }
 }
