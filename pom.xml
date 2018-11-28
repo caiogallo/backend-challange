@@ -25,6 +25,7 @@
 		<lombok.version>1.18.4</lombok.version>
 		<fixture-factory.version>3.1.0</fixture-factory.version>
 		<guava.version>27.0-jre</guava.version>
+		<swagger.version>2.9.2</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -67,6 +68,16 @@
 			<version>${guava.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
     </dependencies>
 
 	<build>
