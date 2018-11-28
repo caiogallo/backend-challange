@@ -3,11 +3,13 @@ package com.invillia.acme.provider.model;
 import com.invillia.acme.address.model.Address;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("provider")
 @Data
 @NoArgsConstructor
+@ToString
 public class Provider {
     private String id;
     private String name;

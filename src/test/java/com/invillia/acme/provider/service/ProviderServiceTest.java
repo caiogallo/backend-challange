@@ -4,6 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.invillia.acme.address.model.Address;
 import com.invillia.acme.address.model.service.AddressSearchRequest;
+import com.invillia.acme.provider.controller.v1.request.ProviderRequest;
 import com.invillia.acme.provider.model.Provider;
 import com.invillia.acme.provider.repository.ProviderRepository;
 import org.junit.Assert;
@@ -59,11 +60,10 @@ public class ProviderServiceTest {
         String providerName = "updated provider";
         Provider provider = Fixture.from(Provider.class).gimme("valid");
         provider.setName(providerName);
-        Provider updatedProvider = providerService.update(provider);
 
-        Assert.assertNotNull(updatedProvider);
-        Assert.assertNotNull(updatedProvider.getId());
-        Assert.assertNotNull(providerName, updatedProvider.getName());
+        boolean update = providerService.update("1", provider);
+
+        Assert.assertEquals(true, update);
     }
 
     @Test

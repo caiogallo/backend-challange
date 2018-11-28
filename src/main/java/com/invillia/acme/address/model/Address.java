@@ -2,9 +2,11 @@ package com.invillia.acme.address.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString
 public class Address {
     private String id;
     private String street;
