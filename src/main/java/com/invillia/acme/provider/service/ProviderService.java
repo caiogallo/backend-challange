@@ -2,6 +2,7 @@ package com.invillia.acme.provider.service;
 
 import com.google.common.base.Strings;
 import com.invillia.acme.address.model.Address;
+import com.invillia.acme.exception.NotFoundException;
 import com.invillia.acme.provider.model.Provider;
 import com.invillia.acme.provider.repository.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,11 @@ public class ProviderService {
         }
         Example<Provider> example = Example.of(provider, matcher);
         List<Provider> providers = providerRepository.findAll(example);
+
+        if(providers == null || providers.size() == 0){
+            throw new NotFoundException();
+        }
+
         return providers;
     }
 }
