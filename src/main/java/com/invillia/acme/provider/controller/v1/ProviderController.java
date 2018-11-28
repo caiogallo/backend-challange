@@ -17,7 +17,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController("/v1/provider")
+@RestController
+@RequestMapping("/v1/provider")
 public class ProviderController {
     @Autowired
     private ProviderService providerService;
